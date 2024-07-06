@@ -9,15 +9,20 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = "postgresql://postgres.alawuarlvbiyqzxlvnrh:Dp5JN.c!gjTb9rV@aws-0-ap-south-1.pooler.supabase.com:6543/postgres"
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Referral {
-  id              Int      @id @default(autoincrement())
-  referrerEmail   String   @unique
-  friendEmail     String   @unique
-  referralCode    String?
-  referralMessage String?
-  createdAt       DateTime @default(now())
+  id            Int      @id @default(autoincrement())
+  referrerEmail String
+  friendEmail   String
+  referralCode  String
+  createdAt     DateTime @default(now())
 }
+
+// model User {
+//   id   Int    @id @default(autoincrement())
+//   name String
+// }
